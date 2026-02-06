@@ -184,12 +184,20 @@
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
-        /* 网格布局 */
+        /* 改为Flexbox布局 - 核心修改 */
         .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            display: flex;
+            flex-wrap: wrap;
             gap: 2rem;
             margin-bottom: 3rem;
+            justify-content: center;
+        }
+
+        .grid > * {
+            flex: 1 1 300px;
+            max-width: 400px;
+            min-width: 280px;
+            box-sizing: border-box;
         }
 
         section {
@@ -218,6 +226,9 @@
         .team-member {
             text-align: center;
             padding: 1.5rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
 
         .member-img {
@@ -252,6 +263,11 @@
             margin-bottom: 1rem;
         }
 
+        .team-member p {
+            flex-grow: 1;
+            margin-bottom: 1.5rem;
+        }
+
         .social-links {
             display: flex;
             justify-content: center;
@@ -273,6 +289,9 @@
         /* 项目样式 */
         .project {
             padding: 1.5rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
 
         .project h3 {
@@ -285,6 +304,11 @@
 
         .project h3 i {
             color: var(--accent-color);
+        }
+
+        .project p {
+            flex-grow: 1;
+            margin-bottom: 1.5rem;
         }
 
         .project .tags {
@@ -395,6 +419,10 @@
             .grid {
                 grid-template-columns: 1fr;
             }
+            
+            .links-container {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 480px) {
@@ -412,6 +440,11 @@
 
             .glass {
                 padding: 1.5rem;
+            }
+            
+            .grid > * {
+                flex: 1 1 100%;
+                max-width: 100%;
             }
         }
     </style>
@@ -512,7 +545,7 @@
             </div>
         </section>
 
-        <!-- 项目展示 -->
+        <!-- 项目展示 - 已修复HTML结构 -->
         <section id="projects">
             <h2><i class="fas fa-project-diagram"></i> 项目展示</h2>
             <div class="grid">
@@ -524,7 +557,7 @@
                         <span class="tag backend">Checker</span>
                         <span class="tag design">Minecraft</span>
                     </div>
-                    <a href="https://gitee.com/Oy-Team" class="btn" style="margin-top: 1rem;">查看详情</a>
+                    <a href="https://gitee.com/Oy-Team" class="btn">查看详情</a>
                 </div>
 
                 <div class="glass project">
@@ -534,7 +567,7 @@
                         <span class="tag backend">Python</span>
                         <span class="tag design">爬虫</span>
                     </div>
-                    <a href="https://gitee.com/Oy-Team/OyComboScraper" class="btn" style="margin-top: 1rem;">查看详情</a>
+                    <a href="https://gitee.com/Oy-Team/OyComboScraper" class="btn">查看详情</a>
                 </div>
 
                 <div class="glass project">
@@ -545,49 +578,40 @@
                         <span class="tag backend">Token</span>
                         <span class="tag design">Microsoft</span>
                     </div>
-                    <a href="https://gitee.com/Oy-Team" class="btn" style="margin-top: 1rem;">查看详情</a>
+                    <a href="https://gitee.com/Oy-Team" class="btn">查看详情</a>
                 </div>
-            </div>
 
-
-
-                    <div class="glass project">
-                    <h3><i class="fas fa-robot"></i> 正在开发...</h3>
+                <div class="glass project">
+                    <h3><i class="fas fa-code"></i> 正在开发...</h3>
                     <p>下一个会是什么项目呢？</p>
                     <div class="tags">
                         <span class="tag frontend">Python？</span>
                         <span class="tag backend">Java？</span>
                         <span class="tag design">PHP？</span>
                     </div>
-                    <a href="https://gitee.com/Oy-Team" class="btn" style="margin-top: 1rem;">查看详情</a>
+                    <a href="https://gitee.com/Oy-Team" class="btn">查看详情</a>
                 </div>
-            </div>
 
-
-    
-                    <div class="glass project">
-                    <h3><i class="fas fa-robot"></i> 正在开发...</h3>
+                <div class="glass project">
+                    <h3><i class="fas fa-gamepad"></i> 正在开发...</h3>
                     <p>下一个会是什么项目呢？</p>
                     <div class="tags">
                         <span class="tag frontend">Python？</span>
                         <span class="tag backend">Java？</span>
                         <span class="tag design">PHP？</span>
                     </div>
-                    <a href="https://gitee.com/Oy-Team" class="btn" style="margin-top: 1rem;">查看详情</a>
+                    <a href="https://gitee.com/Oy-Team" class="btn">查看详情</a>
                 </div>
-            </div>
 
-
-    
-                    <div class="glass project">
-                    <h3><i class="fas fa-robot"></i> 正在开发...</h3>
+                <div class="glass project">
+                    <h3><i class="fas fa-server"></i> 正在开发...</h3>
                     <p>下一个会是什么项目呢？</p>
                     <div class="tags">
                         <span class="tag frontend">Python？</span>
                         <span class="tag backend">Java？</span>
                         <span class="tag design">PHP？</span>
                     </div>
-                    <a href="https://gitee.com/Oy-Team" class="btn" style="margin-top: 1rem;">查看详情</a>
+                    <a href="https://gitee.com/Oy-Team" class="btn">查看详情</a>
                 </div>
             </div>
         </section>
@@ -608,7 +632,7 @@
 
                 <a href="https://gitee.com/Oy-Team" class="glass link-item">
                     <div class="link-icon" style="background: rgba(76, 130, 230, 0.2); color: var(--primary-color);">
-                        <i class="fab fa-github"></i>
+                        <i class="fab fa-gitlab"></i>
                     </div>
                     <div class="link-text">
                         <h4>Gitee仓库</h4>
@@ -626,7 +650,6 @@
                     </div>
                 </a>
 
-                
                 <a href="https://qm.qq.com/q/rim3fypdbE" class="glass link-item">
                     <div class="link-icon" style="background: rgba(156, 136, 255, 0.2); color: var(--secondary-color);">
                         <i class="fas fa-server"></i>
@@ -636,16 +659,12 @@
                         <p>一个服务器</p>
                     </div>
                 </a>
-
-
-
-                
             </div>
         </section>
 
         <!-- 页脚 -->
         <footer>
-            <p>© 2023 创新团队. 保留所有权利. |  Designed with <i class="fas fa-heart" style="color: var(--accent-color);"></i> for the community</p>
+            <p>© 2023 OyTeam. 保留所有权利. |  Designed with <i class="fas fa-heart" style="color: var(--accent-color);"></i> for the community</p>
             <p style="margin-top: 0.5rem; font-size: 0.8rem;">联系方式: admin@oyteam.de5.net </p>
         </footer>
     </div>
