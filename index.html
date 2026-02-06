@@ -3,750 +3,657 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OyTeam - 创新技术团队</title>
-    <!-- MDUI CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/css/mdui.min.css">
-    <!-- LayUI CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/layui@2.8.18/dist/css/layui.css">
-    <!-- 字体图标 -->
+    <title>创新团队 | 毛玻璃效果主页</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- 自定义样式 -->
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+
         :root {
-            --primary-color: #3f51b5;
-            --secondary-color: #ff4081;
-            --accent-color: #009688;
+            --primary-color: rgba(76, 130, 230, 0.8);
+            --secondary-color: rgba(156, 136, 255, 0.8);
+            --accent-color: rgba(255, 107, 107, 0.8);
+            --dark-bg: rgba(15, 22, 36, 0.8);
+            --light-bg: rgba(255, 255, 255, 0.1);
+            --text-light: rgba(255, 255, 255, 0.9);
+            --text-muted: rgba(255, 255, 255, 0.7);
+            --border-radius: 20px;
+            --spacing: 2rem;
+            --transition: all 0.3s ease;
         }
-        
+
         body {
-            font-family: 'Roboto', 'Noto Sans SC', sans-serif;
+            background: linear-gradient(135deg, #0f1624 0%, #1a2332 50%, #0c1422 100%);
+            color: var(--text-light);
+            min-height: 100vh;
+            padding: 1rem;
+            overflow-x: hidden;
         }
-        
-        .hero-section {
-            background: linear-gradient(135deg, var(--primary-color) 0%, #5c6bc0 100%);
-            color: white;
-            padding-top: 120px;
-            padding-bottom: 80px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero-section::before {
-            content: '';
-            position: absolute;
+
+        .background-elements {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" opacity="0.1"><path d="M0,0 L100,0 L100,100 Z" fill="white"/></svg>');
-            background-size: cover;
+            z-index: -1;
+            overflow: hidden;
         }
-        
-        .section-title {
+
+        .bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.15;
+        }
+
+        .circle-1 {
+            background: var(--primary-color);
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            left: 5%;
+        }
+
+        .circle-2 {
+            background: var(--secondary-color);
+            width: 400px;
+            height: 400px;
+            bottom: 10%;
+            right: 5%;
+        }
+
+        .circle-3 {
+            background: var(--accent-color);
+            width: 250px;
+            height: 250px;
+            top: 50%;
+            left: 80%;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* 毛玻璃效果通用样式 */
+        .glass {
+            background: var(--light-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            padding: var(--spacing);
+            transition: var(--transition);
+        }
+
+        .glass:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+            transform: translateY(-5px);
+        }
+
+        /* 头部样式 */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            transition: var(--transition);
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--text-light);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* 主要内容区域 */
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 网格布局 */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        section {
+            margin-bottom: 4rem;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
             position: relative;
-            padding-bottom: 15px;
-            margin-bottom: 40px;
+            padding-bottom: 0.5rem;
         }
-        
-        .section-title::after {
+
+        h2:after {
             content: '';
             position: absolute;
             bottom: 0;
             left: 0;
             width: 60px;
-            height: 3px;
-            background-color: var(--secondary-color);
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 2px;
         }
-        
-        .team-member-card {
-            transition: transform 0.3s ease;
-            border-radius: 8px;
+
+        /* 团队成员样式 */
+        .team-member {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .member-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
             overflow: hidden;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
         }
-        
-        .team-member-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+
+        .team-member:hover .member-img {
+            border-color: var(--primary-color);
+            transform: scale(1.05);
         }
-        
-        .project-card {
-            border-radius: 8px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-        }
-        
-        .skill-bar {
-            height: 8px;
-            border-radius: 4px;
-            background-color: #e0e0e0;
-            margin-top: 8px;
-            overflow: hidden;
-        }
-        
-        .skill-level {
+
+        .member-img img {
+            width: 100%;
             height: 100%;
-            border-radius: 4px;
-            background-color: var(--accent-color);
+            object-fit: cover;
         }
-        
-        .contact-info-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
+
+        .team-member h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
         }
-        
-        .contact-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: var(--primary-color);
-            color: white;
+
+        .team-member .role {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
             display: flex;
-            align-items: center;
             justify-content: center;
-            margin-right: 15px;
+            gap: 1rem;
+            margin-top: 1rem;
         }
-        
-        .footer {
-            background-color: #303030;
-            color: #f5f5f5;
-            padding: 40px 0 20px;
-        }
-        
+
         .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: rgba(255,255,255,0.1);
-            color: white;
-            margin-right: 10px;
-            transition: all 0.3s ease;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            transition: var(--transition);
         }
-        
+
         .social-links a:hover {
-            background-color: var(--secondary-color);
+            color: var(--primary-color);
             transform: translateY(-3px);
         }
-        
-        .animated-element {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
+
+        /* 项目样式 */
+        .project {
+            padding: 1.5rem;
         }
-        
-        .animated-element.visible {
-            opacity: 1;
-            transform: translateY(0);
+
+        .project h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
-        
-        .floating-shape {
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0.1;
-            z-index: 0;
+
+        .project h3 i {
+            color: var(--accent-color);
         }
-        
-        .shape-1 {
-            width: 300px;
-            height: 300px;
-            background-color: var(--secondary-color);
-            top: -150px;
-            right: -100px;
+
+        .project .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
         }
-        
-        .shape-2 {
-            width: 200px;
-            height: 200px;
-            background-color: var(--accent-color);
-            bottom: 50px;
-            left: -100px;
+
+        .tag {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
         }
-        
-        /* LayUI表单样式调整 */
-        .layui-form-item {
-            margin-bottom: 22px;
-        }
-        
-        .layui-form-label {
-            text-align: left;
-            padding-left: 0;
-            font-weight: bold;
-        }
-        
-        .layui-input-block {
-            margin-left: 0;
-        }
-        
-        .layui-input, .layui-textarea {
-            border-radius: 4px;
-            border: 1px solid #ddd;
-        }
-        
-        .layui-input:focus, .layui-textarea:focus {
-            border-color: var(--primary-color);
-        }
-        
-        .layui-btn-primary {
-            background-color: var(--primary-color);
-            border-color: var(--primary-color);
-        }
-        
-        .layui-btn-primary:hover {
-            background-color: #303f9f;
-            border-color: #303f9f;
-        }
-        
-        .layui-btn-warm {
-            background-color: var(--secondary-color);
-            border-color: var(--secondary-color);
-        }
-        
-        .layui-btn-warm:hover {
-            background-color: #f50057;
-            border-color: #f50057;
-        }
-        
-        .layui-timeline-title {
-            font-weight: bold;
+
+        .project .tag.frontend {
+            background: rgba(76, 130, 230, 0.2);
             color: var(--primary-color);
         }
-        
-        .layui-timeline-axis {
+
+        .project .tag.backend {
+            background: rgba(156, 136, 255, 0.2);
             color: var(--secondary-color);
         }
-        
-        @media (max-width: 600px) {
-            .hero-section {
-                padding-top: 100px;
-                padding-bottom: 60px;
+
+        .project .tag.design {
+            background: rgba(255, 107, 107, 0.2);
+            color: var(--accent-color);
+        }
+
+        /* 友情链接样式 */
+        .links-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .link-item {
+            display: flex;
+            align-items: center;
+            padding: 1.2rem;
+            border-radius: var(--border-radius);
+            background: rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .link-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(10px);
+        }
+
+        .link-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-size: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .link-text h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .link-text p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* 页脚样式 */
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 1.5rem;
             }
-            
-            .section-title {
-                margin-bottom: 30px;
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
             }
-            
-            .layui-form-label {
-                padding-bottom: 5px;
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 2rem 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            .glass {
+                padding: 1.5rem;
             }
         }
     </style>
 </head>
-<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-indigo mdui-theme-accent-pink">
-    <!-- 顶部导航栏 -->
-    <header class="mdui-appbar mdui-appbar-fixed">
-        <div class="mdui-toolbar mdui-color-theme">
-            <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#main-drawer'}">
-                <i class="mdui-icon material-icons">menu</i>
-            </a>
-            <a href="#" class="mdui-typo-headline mdui-hidden-xs">OyTeam</a>
-            <div class="mdui-toolbar-spacer"></div>
-            <a href="#home" class="mdui-btn mdui-btn-icon mdui-ripple">
-                <i class="mdui-icon material-icons">home</i>
-            </a>
-            <a href="#about" class="mdui-btn mdui-btn-icon mdui-ripple mdui-hidden-xs">
-                <i class="mdui-icon material-icons">info</i>
-            </a>
-            <a href="#team" class="mdui-btn mdui-btn-icon mdui-ripple mdui-hidden-xs">
-                <i class="mdui-icon material-icons">people</i>
-            </a>
-            <a href="#contact" class="mdui-btn mdui-btn-icon mdui-ripple">
-                <i class="mdui-icon material-icons">email</i>
-            </a>
-        </div>
-    </header>
-
-    <!-- 侧边导航栏 -->
-    <div class="mdui-drawer" id="main-drawer">
-        <div class="mdui-list" mdui-collapse="{accordion: true}">
-            <div class="mdui-list-item mdui-ripple">
-                <i class="mdui-list-item-icon mdui-icon material-icons">home</i>
-                <div class="mdui-list-item-content">
-                    <a href="#home" class="mdui-list-item-text">首页</a>
-                </div>
-            </div>
-            
-            <div class="mdui-list-item mdui-ripple">
-                <i class="mdui-list-item-icon mdui-icon material-icons">info</i>
-                <div class="mdui-list-item-content">
-                    <a href="#about" class="mdui-list-item-text">关于我们</a>
-                </div>
-            </div>
-            
-            <div class="mdui-list-item mdui-ripple">
-                <i class="mdui-list-item-icon mdui-icon material-icons">people</i>
-                <div class="mdui-list-item-content">
-                    <a href="#team" class="mdui-list-item-text">团队成员</a>
-                </div>
-            </div>
-            
-            <div class="mdui-list-item mdui-ripple">
-                <i class="mdui-list-item-icon mdui-icon material-icons">work</i>
-                <div class="mdui-list-item-content">
-                    <a href="#projects" class="mdui-list-item-text">项目展示</a>
-                </div>
-            </div>
-            
-            <div class="mdui-list-item mdui-ripple">
-                <i class="mdui-list-item-icon mdui-icon material-icons">timeline</i>
-                <div class="mdui-list-item-content">
-                    <a href="#timeline" class="mdui-list-item-text">发展历程</a>
-                </div>
-            </div>
-            
-            <div class="mdui-list-item mdui-ripple">
-                <i class="mdui-list-item-icon mdui-icon material-icons">email</i>
-                <div class="mdui-list-item-content">
-                    <a href="#contact" class="mdui-list-item-text">联系我们</a>
-                </div>
-            </div>
-        </div>
+<body>
+    <!-- 背景装饰元素 -->
+    <div class="background-elements">
+        <div class="bg-circle circle-1"></div>
+        <div class="bg-circle circle-2"></div>
+        <div class="bg-circle circle-3"></div>
     </div>
 
-    <!-- 主要内容区域 -->
-    <main>
-        <!-- 首页横幅 -->
-        <section id="home" class="hero-section">
-            <div class="floating-shape shape-1"></div>
-            <div class="floating-shape shape-2"></div>
-            <div class="mdui-container">
-                <div class="mdui-row">
-                    <div class="mdui-col-md-7 animated-element">
-                        <h1 class="mdui-typo-display-3 mdui-text-color-white-text">OyTeam</h1>
-                        <p class="mdui-typo-headline mdui-text-color-white-secondary">创新技术团队 · 创造数字未来</p>
-                        <p class="mdui-typo-subheading-opacity mdui-text-color-white-secondary">
-                            OyTeam是一支充满激情和创造力的技术团队，专注于Python开发、Java、人工智能和用户体验设计。我们致力于通过技术创新解决复杂问题。
-                        </p>
-                        <div class="mdui-m-t-4">
-                            <a href="#about" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-white mdui-text-color-indigo">
-                                了解更多
-                            </a>
-                            <a href="#contact" class="mdui-btn mdui-btn-outlined mdui-ripple mdui-color-white mdui-m-l-2">
-                                联系我们
-                            </a>
-                        </div>
-                    </div>
-                    <div class="mdui-col-md-5 mdui-hidden-sm-down animated-element" style="animation-delay: 0.2s;">
-                        <div class="mdui-text-center">
-                            <img src="https://cdn.jsdelivr.net/gh/mdui/mdui.github.io@master/docs/images/logo.svg" 
-                                 alt="OyTeam Logo" style="max-width: 300px; filter: brightness(0) invert(1);">
-                        </div>
-                    </div>
-                </div>
+    <div class="container">
+        <!-- 头部导航 -->
+        <header>
+            <div class="logo">
+                <i class="fas fa-cube"></i>
+                <span>创新团队</span>
             </div>
-        </section>
+            <nav>
+                <ul>
+                    <li><a href="#intro" class="active">团队介绍</a></li>
+                    <li><a href="#team">团队成员</a></li>
+                    <li><a href="#projects">项目展示</a></li>
+                    <li><a href="#links">友情链接</a></li>
+                </ul>
+            </nav>
+        </header>
 
-        <!-- 关于我们 -->
-        <section id="about" class="mdui-p-a-5 mdui-container">
-            <div class="mdui-container">
-                <h2 class="section-title mdui-text-center mdui-typo-display-1">关于我们</h2>
-                <div class="mdui-row">
-                    <div class="mdui-col-md-6 animated-element">
-                        <h3 class="mdui-typo-title">我们的使命</h3>
-                        <p class="mdui-typo-subheading">
-                            在OyTeam，我们相信技术的力量可以改变世界。我们的使命是通过创新和卓越的技术解决方案，帮助客户实现他们的数字愿景。
-                        </p>
-                        <p>
-                            我们团队由充满激情的开发者、设计师和技术专家组成，拥有广泛的技术栈和经验。从概念到部署，我们提供全方位的技术服务。
-                        </p>
-                        
-                        <h3 class="mdui-typo-title mdui-m-t-4">我们的技能</h3>
-                        <div class="mdui-m-t-2">
-                            <div class="mdui-typo-subheading">Python</div>
-                            <div class="skill-bar">
-                                <div class="skill-level" style="width: 95%;"></div>
-                            </div>
-                            
-                            <div class="mdui-typo-subheading mdui-m-t-2">Java</div>
-                            <div class="skill-bar">
-                                <div class="skill-level" style="width: 90%;"></div>
-                            </div>
-                            
-                            <div class="mdui-typo-subheading mdui-m-t-2">PHP</div>
-                            <div class="skill-bar">
-                                <div class="skill-level" style="width: 88%;"></div>
-                            </div>
-                            
-                            <div class="mdui-typo-subheading mdui-m-t-2">人工智能</div>
-                            <div class="skill-bar">
-                                <div class="skill-level" style="width: 85%;"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mdui-col-md-6 animated-element" style="animation-delay: 0.2s;">
-                        <h3 class="mdui-typo-title">我们的价值观</h3>
-                        <div class="mdui-list">
-                            <div class="mdui-list-item mdui-m-b-2">
-                                <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-indigo">lightbulb_outline</i>
-                                <div class="mdui-list-item-content">
-                                    <div class="mdui-list-item-title">创新</div>
-                                    <div class="mdui-list-item-text mdui-list-item-one-line">不断探索新技术和方法，为客户提供前沿解决方案</div>
-                                </div>
-                            </div>
-                            
-                            <div class="mdui-list-item mdui-m-b-2">
-                                <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-indigo">grade</i>
-                                <div class="mdui-list-item-content">
-                                    <div class="mdui-list-item-title">卓越</div>
-                                    <div class="mdui-list-item-text mdui-list-item-one-line">追求最高标准的质量和用户体验</div>
-                                </div>
-                            </div>
-                            
-                            <div class="mdui-list-item mdui-m-b-2">
-                                <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-indigo">group</i>
-                                <div class="mdui-list-item-content">
-                                    <div class="mdui-list-item-title">协作</div>
-                                    <div class="mdui-list-item-text mdui-list-item-one-line">团队合作，共享知识，共同成长</div>
-                                </div>
-                            </div>
-                            
-                            <div class="mdui-list-item mdui-m-b-2">
-                                <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-indigo">access_time</i>
-                                <div class="mdui-list-item-content">
-                                    <div class="mdui-list-item-title">责任</div>
-                                    <div class="mdui-list-item-text mdui-list-item-one-line">对客户、项目和团队成员负责</div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
+        <!-- 团队介绍 -->
+        <section id="intro" class="glass">
+            <div class="hero">
+                <h1>创新驱动未来</h1>
+                <p>我们是一支专注于前沿技术研究与产品开发的团队，致力于通过创新的解决方案解决复杂问题。团队成员来自不同领域，拥有丰富的行业经验和技术专长，共同打造卓越的产品与服务。</p>
+                <p>我们的使命是通过技术创新推动行业发展，为用户创造价值。我们相信协作的力量，注重团队合作与知识共享，不断追求卓越与突破。</p>
+                <a href="#team" class="btn">了解团队</a>
             </div>
         </section>
 
         <!-- 团队成员 -->
-        <section id="team" class="mdui-p-a-5 mdui-color-grey-100">
-            <div class="mdui-container">
-                <h2 class="section-title mdui-text-center mdui-typo-display-1">团队成员</h2>
-                <p class="mdui-text-center mdui-typo-subheading mdui-m-b-4">认识我们才华横溢的团队成员</p>
-                
-                <div class="mdui-row">
-                    <!-- 成员1 -->
-                    <div class="mdui-col-sm-6 mdui-col-md-3 mdui-m-b-3">
-                        <div class="team-member-card mdui-card">
-                            <div class="mdui-card-media">
-                                <img src="http://q.qlogo.cn/headimg_dl?dst_uin=2197077248&spec=640&img_type=jpg" alt="团队成员">
-                                <div class="mdui-card-media-covered mdui-card-media-covered-gradient">
-                                    <div class="mdui-card-primary">
-                                        <div class="mdui-card-primary-title">TR114514</div>
-                                        <div class="mdui-card-primary-subtitle">Skidder</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mdui-card-content">
-                                <p>最强打滑者。</p>
-                                <div class="mdui-chip">
-                                    <span class="mdui-chip-title">Python</span>
-                                </div>
-                                <div class="mdui-chip">
-                                    <span class="mdui-chip-title">Java</span>
-                                </div>
-                                <div class="mdui-chip">
-                                    <span class="mdui-chip-title">PHP</span>
-                                </div>
-                            </div>
-                        </div>
+        <section id="team">
+            <h2><i class="fas fa-users"></i> 团队成员</h2>
+            <div class="grid">
+                <div class="glass team-member">
+                    <div class="member-img">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="张明">
                     </div>
-                    
-                    <!-- 成员2 -->
-                    
-                    <!-- 成员3 -->
-                    
-                    <!-- 成员4 -->
+                    <h3>张明</h3>
+                    <div class="role">技术总监</div>
+                    <p>10年全栈开发经验，擅长系统架构设计与团队管理，负责技术方向规划与决策。</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
 
+                <div class="glass team-member">
+                    <div class="member-img">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="李雪">
+                    </div>
+                    <h3>李雪</h3>
+                    <div class="role">产品经理</div>
+                    <p>用户体验专家，负责产品规划与设计，深谙用户需求与市场趋势。</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+
+                <div class="glass team-member">
+                    <div class="member-img">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="王强">
+                    </div>
+                    <h3>王强</h3>
+                    <div class="role">高级开发工程师</div>
+                    <p>专注于后端开发与数据库优化，对高并发系统设计有深入研究。</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+
+                <div class="glass team-member">
+                    <div class="member-img">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="赵琳">
+                    </div>
+                    <h3>赵琳</h3>
+                    <div class="role">UI/UX设计师</div>
+                    <p>创意设计师，擅长界面设计与用户体验优化，对视觉细节有极高要求。</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-dribbble"></i></a>
+                        <a href="#"><i class="fab fa-behance"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- 项目展示 -->
-        <section id="projects" class="mdui-p-a-5 mdui-container">
-            <div class="mdui-container">
-                <h2 class="section-title mdui-text-center mdui-typo-display-1">项目展示</h2>
-                <p class="mdui-text-center mdui-typo-subheading mdui-m-b-4">我们最近完成的一些优秀项目</p>
-                
-                <div class="mdui-row">
-                    <!-- 项目1 -->
-                    <div class="mdui-col-md-4 mdui-m-b-3">
-                        <div class="project-card mdui-card">
-                            <div class="mdui-card-header">
-                                <img class="mdui-card-header-avatar" src="https://cdn.jsdelivr.net/gh/mdui/mdui.github.io@master/docs/images/avatar.jpg" alt="项目图标">
-                                <div class="mdui-card-header-title">OyChecker</div>
-                                <div class="mdui-card-header-subtitle">一个基于 MSMC 的 Minecraft测卡器</div>
-                            </div>
-                            <div class="mdui-card-media">
-                                <img src="https://i.imgur.com/oBd2Pbj.png" alt="项目图片">
-                            </div>
-                            <div class="mdui-card-content">
-                                一个基于MSMC 的 Minecraft 测卡器。
-                            </div>
-                            <div class="mdui-card-actions">
-                                <button class="mdui-btn mdui-ripple">查看详情</button>
-                            </div>
-                        </div>
+        <section id="projects">
+            <h2><i class="fas fa-project-diagram"></i> 项目展示</h2>
+            <div class="grid">
+                <div class="glass project">
+                    <h3><i class="fas fa-mobile-alt"></i> 智能办公平台</h3>
+                    <p>一款面向企业的一体化智能办公解决方案，涵盖任务管理、协同办公、智能审批等功能模块。</p>
+                    <div class="tags">
+                        <span class="tag frontend">前端</span>
+                        <span class="tag backend">后端</span>
+                        <span class="tag design">UI设计</span>
                     </div>
-                    
-                    <!-- 项目2 -->
-                    <div class="mdui-col-md-4 mdui-m-b-3">
-                        <div class="project-card mdui-card">
-                            <div class="mdui-card-header">
-                                <img class="mdui-card-header-avatar" src="https://cdn.jsdelivr.net/gh/mdui/mdui.github.io@master/docs/images/avatar.jpg" alt="项目图标">
-                                <div class="mdui-card-header-title">OyComboScraper</div>
-                                <div class="mdui-card-header-subtitle">Combo抓取器</div>
-                            </div>
-                            <div class="mdui-card-media">
-                                <img src="https://i.imgur.com/06vayTM.png" alt="项目图片">
-                            </div>
-                            <div class="mdui-card-content">
-                               一个快速的combo抓取器，抓取不同的论坛
-                            </div>
-                            <div class="mdui-card-actions">
-                                <button class="mdui-btn mdui-ripple">查看详情</button>
-                            </div>
-                        </div>
+                    <a href="#" class="btn" style="margin-top: 1rem;">查看详情</a>
+                </div>
+
+                <div class="glass project">
+                    <h3><i class="fas fa-chart-line"></i> 数据分析系统</h3>
+                    <p>基于大数据技术的数据可视化分析平台，支持多源数据整合、智能分析与预测功能。</p>
+                    <div class="tags">
+                        <span class="tag backend">后端</span>
+                        <span class="tag design">数据可视化</span>
                     </div>
-                    
-                    <!-- 项目3 -->
+                    <a href="#" class="btn" style="margin-top: 1rem;">查看详情</a>
+                </div>
 
-
-        <!-- 发展历程（使用LayUI时间线） -->
-        <section id="timeline" class="mdui-p-a-5 mdui-color-grey-100">
-            <div class="mdui-container">
-                <h2 class="section-title mdui-text-center mdui-typo-display-1">发展历程</h2>
-                <p class="mdui-text-center mdui-typo-subheading mdui-m-b-4">OyTeam团队的发展里程碑</p>
-                
-                <div class="mdui-row">
-                    <div class="mdui-col-md-10 mdui-col-offset-md-1">
-                        <ul class="layui-timeline">
-
-                            <li class="layui-timeline-item">
-                                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
-                                <div class="layui-timeline-content layui-text">
-                                    <h3 class="layui-timeline-title">2013年3月</h3>
-                                    <p>OyTeam团队正式成立。</p>
-                                </div>
-                            </li>
-                            
-                        </ul>
+                <div class="glass project">
+                    <h3><i class="fas fa-robot"></i> AI智能助手</h3>
+                    <p>基于自然语言处理的智能助手，支持多轮对话、任务执行与个性化推荐功能。</p>
+                    <div class="tags">
+                        <span class="tag frontend">前端</span>
+                        <span class="tag backend">AI算法</span>
+                        <span class="tag design">交互设计</span>
                     </div>
+                    <a href="#" class="btn" style="margin-top: 1rem;">查看详情</a>
                 </div>
             </div>
         </section>
 
-        <!-- 联系我们（使用LayUI表单） -->
-        <section id="contact" class="mdui-p-a-5 mdui-container">
-            <div class="mdui-container">
-                <h2 class="section-title mdui-text-center mdui-typo-display-1">联系我们</h2>
-                <p class="mdui-text-center mdui-typo-subheading mdui-m-b-4">我们很乐意听到您的想法并与您合作</p>
-                
-                <div class="mdui-row">
-                    <div class="mdui-col-md-6">
-                        <h3 class="mdui-typo-title">联系信息</h3>
-                        <div class="contact-info-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div>
-                                <div class="mdui-typo-subheading">地址</div>
-                                <div>中国，江西</div>
-                            </div>
-                        </div>
-                        
-                        
-                        <div class="contact-info-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div>
-                                <div class="mdui-typo-subheading">邮箱</div>
-                                <div>admin@oyteam.dpdns.org</div>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-info-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-clock"></i>
-                            </div>
-                            <div>
-                                <div class="mdui-typo-subheading">工作时间</div>
-                                <div>没写...</div>
-                            </div>
-                        </div>
-                        
-                        <div class="mdui-m-t-4">
-                            <h3 class="mdui-typo-title">关注我们</h3>
-                            <div class="social-links">
-                                <a href="#"><i class="fab fa-github"></i></a>
-                                <a href="#"><i class="fab fa-weixin"></i></a>
-                                <a href="#"><i class="fab fa-weibo"></i></a>
-                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                            </div>
-                        </div>
+        <!-- 友情链接 -->
+        <section id="links">
+            <h2><i class="fas fa-link"></i> 友情链接</h2>
+            <div class="links-container">
+                <a href="#" class="glass link-item">
+                    <div class="link-icon" style="background: rgba(76, 130, 230, 0.2); color: var(--primary-color);">
+                        <i class="fab fa-github"></i>
                     </div>
-                </div>
+                    <div class="link-text">
+                        <h4>GitHub仓库</h4>
+                        <p>查看我们的开源项目与代码</p>
+                    </div>
+                </a>
+
+                <a href="#" class="glass link-item">
+                    <div class="link-icon" style="background: rgba(156, 136, 255, 0.2); color: var(--secondary-color);">
+                        <i class="fas fa-blog"></i>
+                    </div>
+                    <div class="link-text">
+                        <h4>技术博客</h4>
+                        <p>阅读我们的技术分享与心得</p>
+                    </div>
+                </a>
+
+                <a href="#" class="glass link-item">
+                    <div class="link-icon" style="background: rgba(255, 107, 107, 0.2); color: var(--accent-color);">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <div class="link-text">
+                        <h4>行业动态</h4>
+                        <p>了解最新行业资讯与趋势</p>
+                    </div>
+                </a>
+
+                <a href="#" class="glass link-item">
+                    <div class="link-icon" style="background: rgba(76, 230, 175, 0.2); color: #4ce6af;">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <div class="link-text">
+                        <h4>合作伙伴</h4>
+                        <p>与我们合作的优秀团队</p>
+                    </div>
+                </a>
             </div>
         </section>
-    </main>
 
-    <!-- 页脚 -->
-    <footer class="footer">
-        <div class="mdui-container">
-            <div class="mdui-row">
-                
-                <div class="mdui-col-md-4 mdui-m-b-3">
-                    <h3 class="mdui-typo-title mdui-text-color-white">快速链接</h3>
-                    <div class="mdui-list">
-                        <a href="#home" class="mdui-list-item mdui-ripple mdui-text-color-white-secondary">首页</a>
-                        <a href="#about" class="mdui-list-item mdui-ripple mdui-text-color-white-secondary">关于我们</a>
-                        <a href="#team" class="mdui-list-item mdui-ripple mdui-text-color-white-secondary">团队成员</a>
-                        <a href="#projects" class="mdui-list-item mdui-ripple mdui-text-color-white-secondary">项目展示</a>
-                        <a href="#timeline" class="mdui-list-item mdui-ripple mdui-text-color-white-secondary">发展历程</a>
-                        <a href="#contact" class="mdui-list-item mdui-ripple mdui-text-color-white-secondary">联系我们</a>
-                    </div>
-                </div>
-            
-            <div class="mdui-divider mdui-m-t-3 mdui-m-b-3"></div>
-            
-            <div class="mdui-text-center mdui-text-color-white-secondary">
-                <p>© 2026 OyTeam 技术团队. 保留所有权利.</p>
-            </div>
-        </div>
-    </footer>
+        <!-- 页脚 -->
+        <footer>
+            <p>© 2023 创新团队. 保留所有权利. |  Designed with <i class="fas fa-heart" style="color: var(--accent-color);"></i> for the community</p>
+            <p style="margin-top: 0.5rem; font-size: 0.8rem;">联系方式: contact@innovation-team.com | 电话: (123) 456-7890</p>
+        </footer>
+    </div>
 
-    <!-- MDUI JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/js/mdui.min.js"></script>
-    <!-- LayUI JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/layui@2.8.18/dist/layui.js"></script>
-    <!-- 自定义脚本 -->
     <script>
-        // 初始化MDUI组件
+        // 简单的交互效果
         document.addEventListener('DOMContentLoaded', function() {
-            // 滚动动画效果
-            const animatedElements = document.querySelectorAll('.animated-element');
+            // 导航链接点击效果
+            const navLinks = document.querySelectorAll('nav a');
             
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            });
-            
-            animatedElements.forEach(el => {
-                observer.observe(el);
-            });
-            
-            // 平滑滚动
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // 移除所有链接的active类
+                    navLinks.forEach(item => item.classList.remove('active'));
+                    // 为当前点击的链接添加active类
+                    this.classList.add('active');
                     
+                    // 平滑滚动到目标区域
                     const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 70,
-                            behavior: 'smooth'
-                        });
-                        
-                        // 在移动设备上关闭抽屉
-                        if (window.innerWidth < 1024) {
-                            const drawer = new mdui.Drawer('#main-drawer');
-                            drawer.close();
+                    if(targetId.startsWith('#')) {
+                        e.preventDefault();
+                        const targetElement = document.querySelector(targetId);
+                        if(targetElement) {
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 100,
+                                behavior: 'smooth'
+                            });
                         }
                     }
                 });
             });
-            
-            // 项目卡片按钮事件
-            document.querySelectorAll('.project-card .mdui-btn').forEach(button => {
-                button.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    const card = this.closest('.project-card');
-                    const title = card.querySelector('.mdui-card-header-title').textContent;
-                    
-                    mdui.snackbar({
-                        message: `查看 ${title} 的详细信息`,
-                        position: 'top'
-                    });
-                });
-            });
-            
-            // 团队成员卡片悬停效果
-            document.querySelectorAll('.team-member-card').forEach(card => {
+
+            // 卡片悬停效果增强
+            const glassCards = document.querySelectorAll('.glass');
+            glassCards.forEach(card => {
                 card.addEventListener('mouseenter', function() {
-                    this.style.zIndex = '10';
+                    // 添加轻微的发光效果
+                    this.style.boxShadow = '0 15px 40px rgba(0, 0, 0, 0.3)';
                 });
                 
                 card.addEventListener('mouseleave', function() {
-                    this.style.zIndex = '';
+                    // 恢复原始阴影
+                    this.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.2)';
                 });
             });
-            
-            // 初始化抽屉
-            const drawer = new mdui.Drawer('#main-drawer');
-        });
-        
-        // 页面加载完成后的效果
-        window.addEventListener('load', function() {
-            // 添加页面加载完成后的类
-            document.body.classList.add('loaded');
-            
-            // 延迟显示英雄区域的动画元素
+
+            // 页面加载时的动画效果
             setTimeout(() => {
-                document.querySelectorAll('.hero-section .animated-element').forEach(el => {
-                    el.classList.add('visible');
-                });
-            }, 300);
+                document.body.style.opacity = 1;
+            }, 100);
             
-            // 初始化LayUI
-            layui.use(['form', 'layer'], function(){
-                var form = layui.form;
-                var layer = layui.layer;
-                
-                // 监听提交
-                form.on('submit(formSubmit)', function(data){
-                    // 显示提交成功消息
-                    layer.msg('提交成功！我们将在24小时内与您联系。', {
-                        icon: 1,
-                        time: 3000
-                    });
-                    
-                    // 这里可以添加实际的表单提交逻辑
-                    console.log('表单数据:', data.field);
-                    
-                    // 重置表单
-                    setTimeout(function() {
-                        form.val('contact-form', {
-                            "name": "",
-                            "company": "",
-                            "email": "",
-                            "phone": "",
-                            "type": "",
-                            "desc": ""
-                        });
-                    }, 500);
-                    
-                    return false; // 阻止表单跳转
-                });
-                
-                // 表单验证
-                form.verify({
-                    phone: [
-                        /^1[3-9]\d{9}$/
-                        ,'请输入正确的手机号码'
-                    ]
-                });
-            });
+            // 设置初始透明度
+            document.body.style.opacity = 0;
+            document.body.style.transition = 'opacity 0.5s ease';
         });
     </script>
 </body>
