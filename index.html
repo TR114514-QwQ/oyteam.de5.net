@@ -222,20 +222,20 @@
             border-radius: 2px;
         }
 
-        /* 团队成员样式 */
+        /* 团队成员样式 - 已缩小尺寸 */
         .team-member {
             text-align: center;
-            padding: 1.5rem;
+            padding: 1.2rem; /* 减小内边距 */
             height: 100%;
             display: flex;
             flex-direction: column;
         }
 
         .member-img {
-            width: 150px;
-            height: 150px;
+            width: 120px; /* 从150px缩小到120px */
+            height: 120px; /* 从150px缩小到120px */
             border-radius: 50%;
-            margin: 0 auto 1.5rem;
+            margin: 0 auto 1rem; /* 减小下边距 */
             overflow: hidden;
             border: 3px solid rgba(255, 255, 255, 0.1);
             transition: var(--transition);
@@ -253,37 +253,46 @@
         }
 
         .team-member h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.3rem; /* 从1.5rem缩小到1.3rem */
+            margin-bottom: 0.3rem;
         }
 
         .team-member .role {
             color: var(--primary-color);
             font-weight: 600;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem; /* 减小下边距 */
+            font-size: 0.9rem; /* 添加字体大小调整 */
         }
 
         .team-member p {
             flex-grow: 1;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem; /* 减小下边距 */
+            font-size: 0.9rem; /* 缩小描述文字大小 */
+            line-height: 1.4; /* 调整行高 */
         }
 
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 1rem;
-            margin-top: 1rem;
+            gap: 0.8rem; /* 减小图标间距 */
+            margin-top: 0.8rem; /* 减小上边距 */
         }
 
         .social-links a {
             color: var(--text-muted);
-            font-size: 1.2rem;
+            font-size: 1.1rem; /* 从1.2rem缩小到1.1rem */
             transition: var(--transition);
         }
 
         .social-links a:hover {
             color: var(--primary-color);
             transform: translateY(-3px);
+        }
+
+        /* 为团队成员的网格卡片设置更小的基础尺寸 */
+        #team .grid > * {
+            flex: 1 1 250px; /* 基础宽度从300px缩小到250px */
+            max-width: 320px; /* 最大宽度从400px缩小到320px */
         }
 
         /* 项目样式 */
@@ -415,13 +424,15 @@
             .hero p {
                 font-size: 1rem;
             }
-
-            .grid {
-                grid-template-columns: 1fr;
-            }
             
             .links-container {
                 grid-template-columns: 1fr;
+            }
+            
+            /* 团队成员响应式调整 */
+            #team .grid > * {
+                flex: 1 1 300px;
+                max-width: 100%;
             }
         }
 
@@ -445,6 +456,21 @@
             .grid > * {
                 flex: 1 1 100%;
                 max-width: 100%;
+            }
+            
+            /* 团队成员在小屏幕上进一步调整 */
+            #team .grid > * {
+                flex: 1 1 100%;
+                max-width: 100%;
+            }
+            
+            .team-member {
+                padding: 1rem;
+            }
+            
+            .member-img {
+                width: 100px;
+                height: 100px;
             }
         }
     </style>
@@ -670,9 +696,7 @@
                         <p>一个服务器</p>
                     </div>
                 </a>
-            
             </div>
-    
         </section>
 
         <!-- 页脚 -->
